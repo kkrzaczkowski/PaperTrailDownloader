@@ -8,6 +8,8 @@ namespace PaperTrailDownloader
 {
     public class TaskScheduler
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private DateTime startTime;
         //private TimeSpan timePeriod = new TimeSpan(7, 0, 0, 0);
         private TimeSpan timePeriod = new TimeSpan(0, 0, 0, 20);
@@ -25,6 +27,7 @@ namespace PaperTrailDownloader
         public void Run()
         {
             this.ScheduleTask();
+            log.Info("In task: " + DateTime.Now.ToString());
             Console.WriteLine("Bogdan: " + DateTime.Now.ToString());
             // TO DO: Add sending request to server and saving
         }
