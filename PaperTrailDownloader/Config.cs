@@ -107,7 +107,7 @@ namespace PaperTrailDownloader
 
             if (argumentsParser.ApiToken != null)
             {
-                Directory = argumentsParser.ApiToken;
+                ApiToken = argumentsParser.ApiToken;
             }
         }
 

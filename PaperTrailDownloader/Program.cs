@@ -15,34 +15,48 @@ namespace PaperTrailDownloader
             log.Debug("Reading parameters.");
             Config.CommandLineArguments = args;
             Config.Load();
+            log.Debug("Reading parameters finished.");
 
-            ReadLogs();
+            Console.WriteLine("Downloading. Please wait !!!");
 
-            log.Info("Before Planning");
-            var startDate = DateTime.Now.AddSeconds(10);
-            var interval = new TimeSpan(0, 0, 10);
-            log.Info("First occur: " + startDate.ToString());
+            try
+            {
+                Download(7);
+                Console.WriteLine("Files are downloaded.");
+            }
+            catch (Exception e)
+            {
+                log.Error("Error :", e);
+                Console.WriteLine(e.Message);
+            }
 
-            var task = new PlannedTask(startDate, interval, () => log.Info("jakies wykonanie"), "Task1");
 
-            TaskScheduler.Instance.AddTask(task);
+            //log.Info("Before Planning");
+            //var startDate = DateTime.Now.AddSeconds(10);
+            //var interval = new TimeSpan(0, 0, 10);
+            //log.Info("First occur: " + startDate.ToString());
 
-            log.Info("Waiting in main class");
+            //var task = new PlannedTask(startDate, interval, () => log.Info("jakies wykonanie"), "Task1");
+
+            //TaskScheduler.Instance.AddTask(task);
+
+            Console.WriteLine("Press any button to finish.");
             Console.Read();
         }
 
-        private static void ReadLogs()
+        private static void Download(int amountOfDays)
         {
+            var downloader = new Downloader(Config.Address, Config.Directory, amountOfDays);
+
             if (Config.ApiToken != null)
             {
-                
+                downloader.DownloadByToken(Config.ApiToken);
             }
             else
             {
-
+                downloader.DownloadByUser(Config.User, Config.Password);
             }
         }
-
 
     }
 }
