@@ -12,15 +12,37 @@ namespace PaperTrailDownloader
 
         static void Main(string[] args)
         {
-            log.Info("Before in main class");
-            var occurDate = DateTime.Now.AddSeconds(10);
-            Console.WriteLine("Planned time: " + occurDate.ToString());
-            var scheduler = new TaskScheduler(occurDate);
+            log.Debug("Reading parameters.");
+            Config.CommandLineArguments = args;
+            Config.Load();
 
-            scheduler.Activate();
-            Console.WriteLine("Waiting !!!! ");
+            ReadLogs();
+
+            log.Info("Before Planning");
+            var startDate = DateTime.Now.AddSeconds(10);
+            var interval = new TimeSpan(0, 0, 10);
+            log.Info("First occur: " + startDate.ToString());
+
+            var task = new PlannedTask(startDate, interval, () => log.Info("jakies wykonanie"), "Task1");
+
+            TaskScheduler.Instance.AddTask(task);
+
             log.Info("Waiting in main class");
             Console.Read();
         }
+
+        private static void ReadLogs()
+        {
+            if (Config.ApiToken != null)
+            {
+                
+            }
+            else
+            {
+
+            }
+        }
+
+
     }
 }
