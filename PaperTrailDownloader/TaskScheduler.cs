@@ -52,7 +52,7 @@ namespace PaperTrailDownloader
         private void Run(PlannedTask task)
         {
             log.Debug("Run task: " + task.Description);
-            // run pllaned action
+            // run planned action
             task.Execute();
             log.Info("Executed task: " + task.Description);
             // Schedule next execution

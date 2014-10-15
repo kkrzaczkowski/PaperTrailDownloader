@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PaperTrailDownloader.Helpers
 {
+    /// <summary>
+    /// Class which contains url pattern.
+    /// </summary>
     public static class NameHelper
     {
         public static string GenerateFileAddress(string address, DateTime date)

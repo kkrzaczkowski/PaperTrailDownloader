@@ -75,30 +75,33 @@ namespace PaperTrailDownloader
         /// <param name="args">The arguments.</param>
         private void ParaseArguments(IList<string> args)
         {
-            for (int i = 0; i < args.Count; i = i +2)
+            if (args.Count > 1)
             {
-                string argName = args[i]; 
-                string argValue = args[i + 1];
-
-                switch (argName.ToLower())
+                for (int i = 0; i < args.Count; i = i +2)
                 {
-                    case "-address":
-                        this.Address = argValue;
-                        break;
-                    case "-user":
-                        this.User = argValue;
-                        break;
-                    case "-password":
-                        this.Password = argValue;
-                        break;
-                    case "-directory":
-                        this.Directory = argValue;
-                        break;
-                    case "-token":
-                        this.ApiToken = argValue;
-                        break;
-                    default:
-                        break;
+                    string argName = args[i];
+                    string argValue = args[i + 1];
+
+                    switch (argName.ToLower())
+                    {
+                        case "-address":
+                            this.Address = argValue;
+                            break;
+                        case "-user":
+                            this.User = argValue;
+                            break;
+                        case "-password":
+                            this.Password = argValue;
+                            break;
+                        case "-directory":
+                            this.Directory = argValue;
+                            break;
+                        case "-token":
+                            this.ApiToken = argValue;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }

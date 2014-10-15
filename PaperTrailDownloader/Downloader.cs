@@ -12,7 +12,7 @@ namespace PaperTrailDownloader
     /// <summary>
     /// A class responsibles for getting data from server and saving its.
     /// </summary>
-    public class Downloader
+    public class Downloader : IDownloader
     {
         private const string PapertrailToken = "X-Papertrail-Token";
         private const int BufferSize = 1024;
@@ -67,7 +67,7 @@ namespace PaperTrailDownloader
         {
             for (int i = 0; i < this.amountOfDays; i++)
             {
-                // start download form yesterday
+                // start download from yesterday
                 var dateOfFile = DateTime.Now.AddDays(-(i + 1));
                 var fileAdress = NameHelper.GenerateFileAddress(this.address, dateOfFile);
                 var filePath = NameHelper.GenerateFilePath(this.directory, dateOfFile);
